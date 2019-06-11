@@ -42,12 +42,12 @@ var eyesColor = [
 ];
 var createWizard = function () {
   var wizard = {};
-  wizard.name = names[Math.floor(Math.random() * names.length)] + " " + surnames[Math.floor(Math.random() * surnames.length)];
+  wizard.name = names[Math.floor(Math.random() * names.length)] + ' ' + surnames[Math.floor(Math.random() * surnames.length)];
   wizard.coatColor = coatColor[Math.floor(Math.random() * coatColor.length)];
   wizard.eyesColor = eyesColor[Math.floor(Math.random() * eyesColor.length)];
 
   return wizard;
-}
+};
 
 var wizards = [];
 
