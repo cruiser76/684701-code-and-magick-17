@@ -53,7 +53,7 @@ var wizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-var getRandomNmber = function (min, max) {
+var getRandomNumber = function (min, max) {
   return Math.random() * (max - min) + min;
 };
 
@@ -61,9 +61,9 @@ var createWizards = function (counter) {
   var wizardsList = [];
   for (var i = 0; i < counter; i += 1) {
     var wizard = {};
-    wizard.name = NAMES[Math.floor(getRandomNmber(0, NAMES.length))] + ' ' + SURNAMES[Math.floor(getRandomNmber(0, SURNAMES.length))];
-    wizard.coatcolor = COATCOLOR[Math.floor(getRandomNmber(0, COATCOLOR.length))];
-    wizard.eyescolor = EYESCOLOR[Math.floor(getRandomNmber(0, EYESCOLOR.length))];
+    wizard.name = NAMES[Math.floor(getRandomNumber(0, NAMES.length))] + ' ' + SURNAMES[Math.floor(getRandomNumber(0, SURNAMES.length))];
+    wizard.coatcolor = COATCOLOR[Math.floor(getRandomNumber(0, COATCOLOR.length))];
+    wizard.eyescolor = EYESCOLOR[Math.floor(getRandomNumber(0, EYESCOLOR.length))];
     wizardsList.push(wizard);
   }
   return wizardsList;
