@@ -21,7 +21,6 @@
   "dependencies": {},
   "scripts": {
     "test": "eslint js/",
-    "build": "gulp build",
     "start": "gulp start"
   },
   "engines": {
