@@ -2,7 +2,7 @@
 
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
-var NUMBER_OF_WIZARDS = 4
+var NUMBER_OF_WIZARDS = 4;
 
 var NAMES = [
   'Иван',
