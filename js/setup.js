@@ -2,6 +2,7 @@
 
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
+var NUMBER_OF_WIZARDS = 4
 
 var NAMES = [
   'Иван',
@@ -25,7 +26,7 @@ var SURNAMES = [
   'Ирвинг',
 ];
 
-var COAT_COLOR = [
+var COAT_COLORS = [
   'rgb(101, 137, 164)',
   'rgb(241, 43, 107)',
   'rgb(146, 100, 161)',
@@ -34,7 +35,7 @@ var COAT_COLOR = [
   'rgb(0, 0, 0)'
 ];
 
-var EYES_COLOR = [
+var EYES_COLORS = [
   'black',
   'red',
   'blue',
@@ -42,7 +43,7 @@ var EYES_COLOR = [
   'green'
 ];
 
-var FIREBALL_COLOR = [
+var FIREBALL_COLORS = [
   '#ee4830',
   '#30a8ee',
   '#5ce6c0',
@@ -80,8 +81,8 @@ var createWizards = function (counter) {
   for (var i = 0; i < counter; i += 1) {
     var wizard = {};
     wizard.name = NAMES[Math.floor(getRandomNumber(0, NAMES.length))] + ' ' + SURNAMES[Math.floor(getRandomNumber(0, SURNAMES.length))];
-    wizard.coatColor = COAT_COLOR[Math.floor(getRandomNumber(0, COAT_COLOR.length))];
-    wizard.eyesColor = EYES_COLOR[Math.floor(getRandomNumber(0, EYES_COLOR.length))];
+    wizard.coatColor = COAT_COLORS[Math.floor(getRandomNumber(0, COAT_COLORS.length))];
+    wizard.eyesColor = EYES_COLORS[Math.floor(getRandomNumber(0, EYES_COLORS.length))];
     wizardsList.push(wizard);
   }
   return wizardsList;
@@ -96,7 +97,7 @@ var renderWizard = function (wizard) {
   fragment.appendChild(wizardItem);
 };
 
-var wizards = createWizards(4);
+var wizards = createWizards(NUMBER_OF_WIZARDS);
 wizards.forEach(renderWizard);
 similarList.appendChild(fragment);
 
@@ -134,19 +135,19 @@ setupClose.addEventListener('keydown', function (evt) {
 });
 
 wizardCoat.addEventListener('click', function () {
-  var coatCurrentColor = COAT_COLOR[Math.floor(getRandomNumber(0, COAT_COLOR.length))];
+  var coatCurrentColor = COAT_COLORS[Math.floor(getRandomNumber(0, COAT_COLORS.length))];
   wizardCoat.style.fill = coatCurrentColor;
   coatColorHidden.value = coatCurrentColor;
 });
 
 wizardEyes.addEventListener('click', function () {
-  var eyesCurrentColor = EYES_COLOR[Math.floor(getRandomNumber(0, EYES_COLOR.length))];
+  var eyesCurrentColor = EYES_COLORS[Math.floor(getRandomNumber(0, EYES_COLORS.length))];
   wizardEyes.style.fill = eyesCurrentColor;
   eyesColorHidden.value = eyesCurrentColor;
 });
 
 fireball.addEventListener('click', function () {
-  var fireballCurrentColor = FIREBALL_COLOR[Math.floor(getRandomNumber(0, FIREBALL_COLOR.length))];
+  var fireballCurrentColor = FIREBALL_COLORS[Math.floor(getRandomNumber(0, FIREBALL_COLORS.length))];
   fireball.style['background-color'] = fireballCurrentColor;
   fireballHidden.value = fireballCurrentColor;
 });
