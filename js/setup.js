@@ -1,7 +1,5 @@
 'use strict';
 
-var ESC_KEYCODE = 27;
-var ENTER_KEYCODE = 13;
 var NUMBER_OF_WIZARDS = 4;
 
 var NAMES = [
@@ -51,15 +49,35 @@ var FIREBALL_COLORS = [
   '#e6e848'
 ];
 var setup = document.querySelector('.setup');
-var setupOpen = document.querySelector('.setup-open');
-var setupClose = setup.querySelector('.setup-close');
-var userNameField = setup.querySelector('.setup-user-name');
+
+var shopItem = document.querySelector('.setup-artifacts-shop');
+var bagpack = document.querySelector('.setup-artifacts');
+var moveElement;
+var onDragOver = function (evt) {
+  evt.preventDefault();
+};
+
+var onDrop = function (evt) {
+  if (evt.target.closest('.setup-artifacts-cell:empty')) {
+    evt.target.closest('.setup-artifacts-cell:empty').appendChild(moveElement);
+  }
+};
+
+var onDragStart = function (evt) {
+  var element = evt.target.closest('img');
+  if (element) {
+    moveElement = element;
+    evt.dataTransfer.setData('text/html', moveElement.textContent);
+    bagpack.addEventListener('dragover', onDragOver);
+    bagpack.addEventListener('drop', onDrop);
+  }
+};
+
+shopItem.addEventListener('dragstart', onDragStart);
 
 var similarList = document.querySelector('.setup-similar-list');
 
 var fragment = document.createDocumentFragment();
-
-var setupSimilar = document.querySelector('.setup-similar');
 
 var wizardTemplate = document.querySelector('#similar-wizard-template')
     .content
@@ -100,39 +118,6 @@ var renderWizard = function (wizard) {
 var wizards = createWizards(NUMBER_OF_WIZARDS);
 wizards.forEach(renderWizard);
 similarList.appendChild(fragment);
-
-var onSetupEscPress = function (evt) {
-  if (evt.keyCode === ESC_KEYCODE && !(evt.target === userNameField)) {
-    closePopup();
-  }
-};
-var openPopup = function () {
-  setup.classList.remove('hidden');
-  setupSimilar.classList.remove('hidden');
-  document.addEventListener('keydown', onSetupEscPress);
-};
-var closePopup = function () {
-  setup.classList.add('hidden');
-  document.removeEventListener('keydown', onSetupEscPress);
-};
-
-setupOpen.addEventListener('click', function () {
-  openPopup();
-});
-setupOpen.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    openPopup();
-  }
-});
-
-setupClose.addEventListener('click', function () {
-  closePopup();
-});
-setupClose.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    closePopup();
-  }
-});
 
 wizardCoat.addEventListener('click', function () {
   var coatCurrentColor = COAT_COLORS[Math.floor(getRandomNumber(0, COAT_COLORS.length))];
