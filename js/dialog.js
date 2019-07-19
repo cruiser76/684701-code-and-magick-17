@@ -8,7 +8,7 @@
   var userNameField = setup.querySelector('.setup-user-name');
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = setup.querySelector('.setup-close');
-  var setupSimilar = document.querySelector('.setup-similar');
+
 
   var upload = setup.querySelector('.upload');
   var INIT_COORDS = {};
@@ -21,7 +21,6 @@
   var openPopup = function () {
     if (setup.classList.contains('hidden')) {
       setup.classList.remove('hidden');
-      setupSimilar.classList.remove('hidden');
       INIT_COORDS.X = setup.offsetLeft;
       INIT_COORDS.Y = setup.offsetTop;
       document.addEventListener('keydown', onSetupEscPress);
@@ -99,4 +98,7 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
+  window.dialog = {
+    closePopup: closePopup
+  };
 })();
